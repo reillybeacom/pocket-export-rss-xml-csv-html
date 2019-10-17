@@ -8,13 +8,16 @@ Export your Pocket data using the [API](http://getpocket.com/developer/docs/over
 Just clone the repo here and refer to the server.rb.
 
 ```sh
-    bundle install
-	ruby server.rb
+bundle install
+ruby server.rb
 ```
 
 or
 
 ```sh
-    docker-compose up
+docker-compose up
 ```
 
+Then go to:
+
+http://localhost:4567/
