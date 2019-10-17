@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  ruby:
+    image: ruby
+    environment:
+      BUNDLE_PATH: /app/vendor/bundle
+    volumes:
+      - .:/app/src
+      - vendor_bundle:/app/vendor/bundle
+    ports:
+      - "4567:4567"
+    command: bash -c "cd /app/src && bundle install && bundle exec ruby server.rb"
+      
+volumes:
+  vendor_bundle:

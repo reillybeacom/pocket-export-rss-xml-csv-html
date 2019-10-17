@@ -1,0 +1,78 @@
+<style>
+table {
+border-collapse: collapse;
+}
+tr {
+}
+th, td {
+text-align: left;
+padding: 4px;
+border: 1px solid #ccc;
+}
+tbody tr:nth-child(odd) {
+background-color: #EEE;
+}
+</style>
+<table>
+  <tr>
+    <th>
+      time_added
+    </th>
+    <th>
+      status
+    </th>
+    <th>
+      favorite
+    </th>
+    <th>
+      is_article
+    </th>
+    <th>
+      has_video
+    </th>
+    <th>
+      url
+    </th>
+    <th>
+      tags
+    </th>
+    <th>
+      title
+    </th>
+    <th>
+      excerpt
+    </th>
+  </tr>
+  <% @status = { '0' => 'unread', '1' => 'archived', '2' => 'deleted' } %>
+  <% @data.each do |id, item| %>
+  <tr>
+    <td>
+      <%= Time.at(item['time_added'].to_i).strftime('%Y-%m-%d') %>
+    </td>
+    <td>
+      <%= @status[item['status']] %>
+    </td>
+    <td>
+      <% if item['favorite'] == "1" %>favorite<% end %>
+    </td>
+    <td>
+      <% if item['is_article'] == "1" %>article<% end %>
+    </td>
+    <td>
+      <% if item['has_video'] == "1" %>video<% end %>
+    </td>
+    <td>
+      <a href="<%= item['given_url'] %>"><%= item['given_url'] %></a>
+    </td>
+    <td>
+      <%= item['tags'].keys.join(", ") rescue '' %>
+    </td>
+    <td>
+      <%= item['given_title'] != "" ? item['given_title'] : item['resolved_title'] %>
+    </td>
+    <td>
+      <%= item['excerpt'] %>
+    </td>
+  </tr>
+  <% end %>
+</table>
